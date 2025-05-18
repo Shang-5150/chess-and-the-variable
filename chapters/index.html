@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>棋局之外，變數為名</title>
+    
+    <!-- 樣式表 -->
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/chapter01.css">
+    <link rel="stylesheet" href="styles/chapter02.css">
+</head>
+<body>
+    <!-- 背景 -->
+    <img class="background" src="" alt="背景">
+    
+    <!-- 角色 -->
+    <div class="character main"></div>
+    <div class="character other"></div>
+    
+    <!-- 場景影片 -->
+    <video id="scene-video" style="display: none;"></video>
+    
+    <!-- 對話框 -->
+    <div class="dialogue-box">
+        <div class="speaker-name"></div>
+        <div id="dialogue-text"></div>
+    </div>
+    
+    <!-- 進度條 -->
+    <div class="progress-bar">
+        <div class="progress-fill"></div>
+    </div>
+    
+    <!-- 控制按鈕 -->
+    <div class="controls">
+        <button class="auto-play-control">▶</button>
+        <button class="fast-forward-control">⏩</button>
+        <button class="music-control">🔊</button>
+        <button class="reset-button">重置</button>
+    </div>
+    
+    <!-- 腳本 -->
+    <script src="scripts/scenes.js"></script>
+    <script src="scripts/common.js"></script>
+    <script src="scripts/chapter01.js"></script>
+    <script src="scripts/chapter02.js"></script>
+</body>
+</html> 
