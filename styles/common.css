@@ -1,0 +1,274 @@
+/* 基礎樣式設定 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "標楷體", sans-serif;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* 對話框樣式 */
+.dialogue-box {
+    position: fixed;
+    bottom: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    min-height: 100px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    z-index: 1000;
+    pointer-events: auto;
+}
+
+/* 說話者名稱樣式 */
+.speaker-name {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: white;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.speaker-name.main,
+.speaker-name.other,
+.speaker-name.announcement,
+.speaker-name.inner {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.speaker-name.main {
+    background: linear-gradient(to right, rgba(65, 105, 225, 0.95), rgba(65, 105, 225, 0.8));
+    box-shadow: 0 0 15px rgba(65, 105, 225, 0.4);
+}
+
+.speaker-name.other {
+    background: linear-gradient(to right, rgba(220, 20, 60, 0.95), rgba(220, 20, 60, 0.8));
+    box-shadow: 0 0 15px rgba(220, 20, 60, 0.4);
+}
+
+.speaker-name.announcement {
+    background: linear-gradient(to right, rgba(128, 128, 128, 0.95), rgba(128, 128, 128, 0.8));
+    box-shadow: 0 0 15px rgba(128, 128, 128, 0.4);
+}
+
+.speaker-name.inner {
+    background: linear-gradient(to right, rgba(147, 112, 219, 0.95), rgba(147, 112, 219, 0.8));
+    box-shadow: 0 0 15px rgba(147, 112, 219, 0.4);
+}
+
+/* 對話文字樣式 */
+#dialogue-text {
+    margin: 0;
+    min-height: 1.5em;
+    line-height: 1.6;
+    font-size: 1.1em;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1001;
+}
+
+/* 內心獨白樣式 */
+.inner-thought {
+    color: #DDA0DD;
+    font-style: italic;
+}
+
+/* 文字淡入動畫 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.char-animation {
+    display: inline-block;
+    animation: fadeIn 0.1s ease-in-out;
+}
+
+/* 角色立繪樣式 - 移除所有可能衝突的樣式 */
+.character {
+    position: fixed;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* 移除其他角色相關樣式 */
+
+/* 選項按鈕樣式 */
+.choice-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+.choice-button:hover {
+    transform: scale(1.1);
+    background: #fff;
+}
+
+/* 控制按鈕容器 */
+.control-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 2000;
+}
+
+/* 控制按鈕的基本樣式 */
+.control-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-button:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+/* 自動播放按鈕激活狀態 */
+.auto-play-control.active {
+    background-color: rgba(50, 205, 50, 0.8);  /* 綠色背景 */
+    color: #fff;
+}
+
+/* 快進按鈕激活狀態 */
+.fast-forward-control.active {
+    background-color: rgba(255, 215, 0, 0.8);  /* 金色背景 */
+    color: #fff;
+}
+
+/* 音樂控制按鈕靜音狀態 */
+.music-control.muted {
+    background-color: rgba(169, 169, 169, 0.8);  /* 灰色背景 */
+}
+
+/* 重置按鈕位置 */
+.reset-button {
+    right: 20px;
+}
+
+/* 按鈕提示樣式 */
+[title] {
+    position: relative;
+}
+
+[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* 下一頁按鈕 */
+.next-button {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.next-button:hover {
+    transform: scale(1.1);
+}
+
+/* 進度條 */
+.progress-bar {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+/* 場景動畫 */
+.scene-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10;
+} 

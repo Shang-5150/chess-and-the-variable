@@ -1,0 +1,33 @@
+/* 第一章特定的角色位置設定 */
+/* 基礎角色樣式 */
+.character {
+    position: fixed;  /* 改用 fixed 定位確保位置固定 */
+    bottom: 0;  /* 簡化定位 */
+    height: 80vh;  /* 使用 vh 單位 */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    will-change: opacity;  /* 優化透明度變化 */
+}
+
+/* 角色位置設定 */
+.main-character {
+    left: 10%;
+    height: 85vh;
+}
+
+/* 沈凌琛特別設定 */
+.other-character {
+    left: 45%;
+    height: 85vh;
+}
+
+/* 顯示狀態 */
+.character.visible {
+    opacity: 1;
+}
+
+/* 退場效果 - 只改變透明度 */
+.character.exit {
+    opacity: 0;
+}
