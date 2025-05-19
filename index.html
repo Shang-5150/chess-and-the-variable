@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>棋局之外，變數為名。</title>
+    
+    <!-- 樣式表 -->
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/chapter-special.css">
+    
+    <!-- 禁用選取和拖曳 -->
+    <style>
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            font-family: "標楷體", DFKai-SB, BiauKai, "華康楷體", STKaiti, "楷體", Kai, "楷體", serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- 遊戲主容器 -->
+    <div id="game-container">
+        <!-- 控制按鈕 -->
+        <div id="control-buttons">
+            <div class="control-button" id="btn-fast-forward" title="快轉">⏩</div>
+            <div class="control-button" id="btn-skip" title="跳過">⏭️</div>
+            <div class="control-button" id="btn-mute" title="靜音">🔊</div>
+            <div class="control-button" id="btn-history" title="對話記錄">📜</div>
+            <div class="control-button" id="btn-home" title="回到首頁">🏠</div>
+        </div>
+
+        <!-- 對話記錄面板 -->
+        <div id="dialogue-history"></div>
+
+        <!-- 背景層 -->
+        <div id="background-layer"></div>
+        
+        <!-- 角色層 -->
+        <div id="character-layer"></div>
+        
+        <!-- 對話層 -->
+        <div id="dialogue-layer">
+            <div id="dialogue-box" class="hidden">
+                <div id="character-name"></div>
+                <div id="dialogue-text"></div>
+            </div>
+        </div>
+
+        <!-- 轉場層 -->
+        <div id="transition-layer">
+            <video id="transition-video" playsinline></video>
+        </div>
+
+        <!-- 載入畫面 -->
+        <div id="loading-screen">
+            <div class="loading-content">
+                <div class="loading-text">載入中...</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="loading-percentage">0%</div>
+            </div>
+        </div>
+
+        <!-- 初始畫面 -->
+        <div id="title-screen" class="hidden">
+            <div class="title-content">
+                <h1 class="game-title">棋局之外，變數為名。</h1>
+                <div class="player-input">
+                    <input type="text" id="player-name" placeholder="請輸入您的名字" maxlength="20">
+                    <div class="error-message"></div>
+                    <select id="chapter-select">
+                        <option value="chapter1">第一章</option>
+                        <option value="chapter2">第二章</option>
+                        <option value="chapter3">第三章</option>
+                        <option value="chapter4">第四章</option>
+                        <option value="chapter5">第五章</option>
+                    </select>
+                </div>
+                <button id="start-game" class="start-button" disabled>進入遊戲</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 腳本 -->
+    <script src="scripts/common.js"></script>
+    <script src="scripts/chapter-special.js"></script>
+    <script src="scripts/scenes.js"></script>
+    <script>
+        function showCharacter(characterId, position = 'center') {
+            console.log(`嘗試載入角色: ${characterId}, 位置: ${position}`);
+            
+            const character = document.createElement('div');
+            character.className = `character ${position}`;
+            
+            // 定義所有可能的圖片路徑格式
+            const possiblePaths = [
+                `assets/characters/${characterId}.png`,
+                `assets/characters/${characterId}立繪.png`,
+                `assets/characters/${characterId}_立繪.png`,
+                `assets/characters/${characterId}/default.png`
+            ];
+            
+            // 遞迴嘗試載入圖片
+            const tryLoadImage = (pathIndex) => {
+                if (pathIndex >= possiblePaths.length) {
+                    console.error(`無法載入角色 ${characterId} 的任何圖片版本`);
+                    return;
+                }
+                
+                const img = new Image();
+                img.onload = () => {
+                    console.log(`成功載入角色圖片: ${possiblePaths[pathIndex]}`);
+                    character.style.backgroundImage = `url(${possiblePaths[pathIndex]})`;
+                    this.characterLayer.appendChild(character);
+                    setTimeout(() => character.classList.add('visible'), 50);
+                };
+                
+                img.onerror = () => {
+                    console.log(`嘗試載入下一個路徑: ${possiblePaths[pathIndex]}`);
+                    tryLoadImage(pathIndex + 1);
+                };
+                
+                img.src = possiblePaths[pathIndex];
+            };
+            
+            tryLoadImage(0);
+        }
+
+        function saveGameProgress() {
+            const gameState = {
+                currentScene: window.currentSceneIndex,
+                playerName: this.playerName,
+                dialogueHistory: this.dialogueHistoryList,
+                currentBGM: this.currentBGM,
+                timestamp: Date.now()
+            };
+            
+            try {
+                localStorage.setItem('gameProgress', JSON.stringify(gameState));
+                console.log('遊戲進度已保存');
+            } catch (error) {
+                console.error('保存進度時發生錯誤:', error);
+            }
+        }
+
+        function loadGameProgress() {
+            try {
+                const savedState = localStorage.getItem('gameProgress');
+                if (savedState) {
+                    const gameState = JSON.parse(savedState);
+                    
+                    // 檢查存檔是否過期（例如 7 天）
+                    const isExpired = (Date.now() - gameState.timestamp) > 7 * 24 * 60 * 60 * 1000;
+                    
+                    if (!isExpired) {
+                        window.currentSceneIndex = gameState.currentScene;
+                        this.playerName = gameState.playerName;
+                        this.dialogueHistoryList = gameState.dialogueHistory;
+                        this.currentBGM = gameState.currentBGM;
+                        return true;
+                    }
+                }
+            } catch (error) {
+                console.error('載入進度時發生錯誤:', error);
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
