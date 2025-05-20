@@ -15,6 +15,7 @@ class GameCore {
         this.isTyping = false;
         this.isDialogueComplete = false;
         this.isProcessingScene = false; // 新增：場景處理狀態
+        this.werewolfRulePage = 1; // 添加狼人杀规则页码
     }
 
     init() {
@@ -45,6 +46,36 @@ class GameCore {
         
         // 簡單的載入動畫
         this.showLoadingAnimation();
+
+        // 添加狼人杀规则按钮
+        this.btnWerewolfRules = document.createElement('div');
+        this.btnWerewolfRules.className = 'control-button';
+        this.btnWerewolfRules.id = 'btn-werewolf-rules';
+        this.btnWerewolfRules.title = '狼人殺規則';
+        this.btnWerewolfRules.innerHTML = '🎮';
+        this.btnWerewolfRules.style.display = 'none';
+        document.getElementById('control-buttons').appendChild(this.btnWerewolfRules);
+
+        // 添加规则显示层
+        this.werewolfRulesLayer = document.createElement('div');
+        this.werewolfRulesLayer.id = 'werewolf-rules-layer';
+        this.werewolfRulesLayer.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            height: 80vh;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            display: none;
+            z-index: 2000;
+            color: white;
+            text-align: center;
+        `;
+        document.body.appendChild(this.werewolfRulesLayer);
     }
 
     bindTitleScreenEvents() {
@@ -111,6 +142,26 @@ class GameCore {
             window.startChapter4();
         } else if (chapter === 'chapter5') {
             window.startChapter5();
+        } else if (chapter === 'chapter6') {
+            window.startChapter6();
+        } else if (chapter === 'chapter7') {
+            window.startChapter7();
+        } else if (chapter === 'chapter8') {
+            window.startChapter8();
+        } else if (chapter === 'chapter9') {
+            window.startChapter9();
+        } else if (chapter === 'chapter10') {
+            window.startChapter10();
+        } else if (chapter === 'chapter11') {
+            window.startChapter11();
+        } else if (chapter === 'chapter12') {
+            window.startChapter12();
+        } else if (chapter === 'chapter13') {
+            window.startChapter13();
+        } else if (chapter === 'chapter14') {
+            window.startChapter14();
+        } else if (chapter === 'chapter15') {
+            window.startChapter15();
         }
     }
 
@@ -266,6 +317,14 @@ class GameCore {
     async updateScene(scene) {
         this.isProcessingScene = true;
         
+        // 檢查是否需要顯示或隱藏狼人殺規則按鈕
+        if (scene.dialogue && scene.dialogue.includes("說真的，我根本不在意這場狼人殺遊戲的輸贏。")) {
+            this.btnWerewolfRules.style.display = 'flex';
+        } else if (scene.dialogue && scene.dialogue.includes("遊戲結束，狼人勝利。")) {
+            this.btnWerewolfRules.style.display = 'none';
+            this.hideWerewolfRules();
+        }
+
         // 檢查是否需要播放章節動畫
         if (scene.dialogue === "四天後，早上的教室內。") {
             await this.playTransition('assets/video/1-2.mp4');
@@ -297,10 +356,64 @@ class GameCore {
             await this.playTransition('assets/video/5-1.mp4');
         }else if (scene.dialogue === "星期五。") {
             await this.playTransition('assets/video/6-1.mp4');
-        }else if (scene.dialogue === "回去的路上，經過圖書館時，看到沈凌琛也在。他專心的看著書，沒注意到你。") {
+        }else if (scene.dialogue === "好巧，你也在這？") {
             await this.playTransition('assets/video/6-2.mp4');
         }else if (scene.dialogue === "假日時，雖然已經加了沈凌琛的LINE，但還是找不到一個適當的理由去開話題。怕對方覺得自己煩。") {
             await this.playTransition('assets/video/7-1.mp4');
+        }else if (scene.dialogue === "十二月十三日，星期五。") {
+            await this.playTransition('assets/video/7-2.mp4');
+        }else if (scene.dialogue === "你在數學題與時間的拉鋸戰中奮戰了二十多分鐘，終於忍不住撐著頭，往沈凌琛那邊靠過去一點，輕聲開口。") {
+            await this.playTransition('assets/video/7-3.mp4');
+        }else if (scene.dialogue === "今天是聖誕節，校園裡氣氛比平常輕鬆熱鬧了些。") {
+            await this.playTransition('assets/video/8-1.mp4');
+        }else if (scene.dialogue === "冬天的傍晚天黑得快，走到學校後門時天色已經轉灰。路燈剛亮起，橘黃色的光灑在兩人身上，像在替這場談話預留一點柔和的舞台。") {
+            await this.playTransition('assets/video/8-2.mp4');
+        }else if (scene.dialogue === "中午下課後，你剛結束練舞，滿身是汗，耳邊還殘留著音樂節拍的餘震。懶洋洋地踱步到合作社，想買瓶水再順便找點甜的補補元氣。") {
+            await this.playTransition('assets/video/8-3.mp4');
+        }else if (scene.dialogue === "你發訊息說想去圖書館，原本沒預期他會那麼快回，卻突然跳出了一個……貼圖。") {
+            await this.playTransition('assets/video/9-1.mp4');
+        }else if (scene.dialogue === "你一早踏進操場邊的集合區時，整個空地已經劃分出兩端的區域，中間拉起紅白繩界線，明確標示出120公尺的距離。喬珮昕還一邊喝著溫熱的紅豆湯圓，一邊看著活動說明書。") {
+            await this.playTransition('assets/video/9-2.mp4');
+        }else if (scene.dialogue === "你提早到了圖書館。") {
+            await this.playTransition('assets/video/9-3.mp4');
+        }else if (scene.dialogue === "你剛走出校門，一邊回訊息、一邊計劃晚上哪一段複習進度要先看，腦袋被舞社表演和段考擠得幾乎快要炸開。冷風一吹，讓你打了個噴嚏，這才回神。") {
+            await this.playTransition('assets/video/9-4.mp4');
+        }else if (scene.dialogue === "時間一晃而過，轉眼就到了結業式。") {
+            await this.playTransition('assets/video/10-1.mp4');
+        }else if (scene.dialogue === "你躺在床上，燈沒開，手機螢幕是房裡唯一的光。") {
+            await this.playTransition('assets/video/10-2.mp4');
+        }else if (scene.dialogue === "下午三點十二分。") {
+            await this.playTransition('assets/video/10-3.mp4');
+        }else if (scene.dialogue === "訊息跳出來時，你正窩在沙發上看書。") {
+            await this.playTransition('assets/video/10-4.mp4');
+        }else if (scene.dialogue === "今天是農曆春節，你回了老家，但少見的感到有點空虛。") {
+            await this.playTransition('assets/video/11-1.mp4');
+        }else if (scene.dialogue === "你抵達圖書館時，沈凌琛已經坐在靠窗的位置，桌上擺著筆記本與參考書。") {
+            await this.playTransition('assets/video/11-2.mp4');
+        }else if (scene.dialogue === "你仰躺在床上，手機螢幕光芒映在臉上，嘴角還帶著難以抑制的微笑。") {
+            await this.playTransition('assets/video/12-1.mp4');
+        }else if (scene.dialogue === "你站在鏡子前，已經換了第三套衣服。") {
+            await this.playTransition('assets/video/12-2.mp4');
+        }else if (scene.dialogue === "下學期的開學第三天，熱鬧的校園生活讓我懷念起寒假的悠閒。正當你在課堂上昏昏欲睡時，手機震動了一下。") {
+            await this.playTransition('assets/video/12-3.mp4');
+        }else if (scene.dialogue === "第十二章，終") {
+            await this.playTransition('assets/video/12-4.mp4');
+        }else if (scene.dialogue === "在那之後，又過了幾天。") {
+            await this.playTransition('assets/video/13-1.mp4');
+        }else if (scene.dialogue === "校慶當天的校園熱鬧非凡，彩旗飄揚，歡笑聲此起彼落。") {
+            await this.playTransition('assets/video/13-2.mp4');
+        }else if (scene.dialogue === "這道題你會做嗎？") {
+            await this.playTransition('assets/video/14-1.mp4');
+        }else if (scene.dialogue === "你如往常留下來打籃球。這是近來難得的放鬆時刻，陽光正好，微風徐徐。") {
+            await this.playTransition('assets/video/14-2.mp4');
+        }else if (scene.dialogue === "春末的微風裡已有了幾分暑氣，讓人不得不尋找一處避暑的天地。") {
+            await this.playTransition('assets/video/14-3.mp4');
+        }else if (scene.dialogue === "說真的，我根本不在意這場狼人殺遊戲的輸贏。") {
+            await this.playTransition('assets/video/14-4.mp4');
+        }else if (scene.dialogue === "那家店，和他來過幾次呢。") {
+            await this.playTransition('assets/video/15-1.mp4');
+        }else if (scene.dialogue === "第十五章，終") {
+            await this.playTransition('assets/video/15-2.mp4');
         }
         
         // 更新背景
@@ -340,19 +453,193 @@ class GameCore {
     // 檢查並更新背景音樂
     checkAndUpdateBGM(scene) {
         // 根據場景內容決定播放的音樂
-        let targetBGM = 'assets/audio/敘事.mp3'; // 預設音樂
+        let targetBGM = this.currentBGM; // 保持當前音樂，除非有特殊情況
 
-        if (scene.dialogue && scene.dialogue.includes("四天後，早上的教室內。")) {
-            targetBGM = 'assets/audio/輕快.mp3';
+        if (scene.dialogue && scene.dialogue.includes("現在是2024年的10月10日，距離大學入學考還剩下400多天左右。")) {
+            targetBGM = 'assets/audio/敘事.mp3'; // 第一章
+        } else if (scene.dialogue && scene.dialogue.includes("四天後，早上的教室內。")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("中午，學務處。")) {
             targetBGM = 'assets/audio/敘事.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("第一章 終")) {
+            targetBGM = 'assets/audio/積極.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("距離那場比賽已經半個月了。")) {
+            targetBGM = 'assets/audio/向心.mp3'; // 第二章
+        } else if (scene.dialogue && scene.dialogue.includes("幾天後，放學時間。")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("五分鐘後。")) {
+            targetBGM = 'assets/audio/緊張.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("我的思緒漸趨模糊。")) {
-            targetBGM = 'assets/audio/傷心.mp3';   
+            targetBGM = 'assets/audio/幻想2.mp3';   
+        } else if (scene.dialogue && scene.dialogue.includes("頓時，我的腎上腺素爆發。")) {
+            targetBGM = 'assets/audio/幻想.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("球，出乎意料的又從沈凌琛手中傳來了。")) {
-            targetBGM = 'assets/audio/沉靜2.mp3';
+            targetBGM = 'assets/audio/積極2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("隔週，星期四放學。")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("十一月二十二日，放學。")) {
+            targetBGM = 'assets/audio/敘事.mp3'; // 第三章
+        } else if (scene.dialogue && scene.dialogue.includes("這就是要我們一起打球的人！")) {
+            targetBGM = 'assets/audio/積極2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("上週已經打了好幾天球，今天就把時間拿來讀書吧。")) {
             targetBGM = 'assets/audio/敘事.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("隨著時間推移，你似乎已經沒那麼麼在意了。")) {
+            targetBGM = 'assets/audio/輕快.mp3'; // 第四章
+        } else if (scene.dialogue && scene.dialogue.includes("你掃了一眼，就看到多日未見的沈凌琛。他專心的看著書，沒注意到你。")) {
+            targetBGM = 'assets/audio/向心.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("回家的路上，風有點涼，你踩著夕陽餘暉投下的長影，一邊走，一邊回想起剛剛的比賽。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("早晨的太陽曬得刺眼。雖然嘴上說著只是陪打，但內心還是有點小期待的——")) {
+            targetBGM = 'assets/audio/沉靜2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("練習後，你拿著水壺，準備要回教室。")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("星期四，放學。")) {
+            targetBGM = 'assets/audio/輕快.mp3'; // 第五章
+        } else if (scene.dialogue && scene.dialogue.includes("你回到家後，打開李曜辰的IG，尋找沈凌琛的相關消息。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("星期五。")) {
+            targetBGM = 'assets/audio/輕快2.mp3'; // 第六章
+        } else if (scene.dialogue && scene.dialogue.includes("回去的路上，經過圖書館時，看到沈凌琛也在。他專心的看著書，沒注意到你。")) {
+            targetBGM = 'assets/audio/心動2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("回到教室後，這堂是物理課。")) {
+            targetBGM = 'assets/audio/心動.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("假日時，雖然已經加了沈凌琛的LINE，但還是找不到一個適當的理由去開話題。怕對方覺得自己煩。")) {
+            targetBGM = 'assets/audio/敘事.mp3'; // 第七章
+        } else if (scene.dialogue && scene.dialogue.includes("放學時間")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("放學後。")) {
+            targetBGM = 'assets/audio/心動2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("回家後。")) {
+            targetBGM = 'assets/audio/敘事.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("十二月十三日，星期五。")) {
+            targetBGM = 'assets/audio/積極2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你在數學題與時間的拉鋸戰中奮戰了二十多分鐘，終於忍不住撐著頭，往沈凌琛那邊靠過去一點，輕聲開口。")) {
+            targetBGM = 'assets/audio/幻想.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("星期三放學，你照樣到圖書館，懷著些許期待。")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("晚上回到家，你洗完澡坐在書桌前，腦袋裡卻還在回味那本整齊得像參考書的英文筆記。")) {
+            targetBGM = 'assets/audio/敘事.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("今天是聖誕節，校園裡氣氛比平常輕鬆熱鬧了些。")) {
+            targetBGM = 'assets/audio/向心2.mp3'; // 第八章
+        } else if (scene.dialogue && scene.dialogue.includes("圖書館的暖氣運轉著，玻璃窗外是冷颼颼的冬日陽光，斜斜灑在木桌上。")) {
+            targetBGM = 'assets/audio/向心.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("手機震了一下，螢幕亮了起來。你低頭一看，是喬珮昕的訊息。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("冬天的傍晚天黑得快，走到學校後門時天色已經轉灰。路燈剛亮起，橘黃色的光灑在兩人身上，像在替這場談話預留一點柔和的舞台。")) {
+            targetBGM = 'assets/audio/傷心.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("兩人對視一眼，笑聲終於冒出來，像剛剛那一整段壓抑終於找到了一個洞可以透氣。")) {
+            targetBGM = 'assets/audio/沉靜2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("中午下課後，你剛結束練舞，滿身是汗，耳邊還殘留著音樂節拍的餘震。懶洋洋地踱步到合作社，想買瓶水再順便找點甜的補補元氣。")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你正出神著，李曜辰忽然歪過頭問。")) {
+            targetBGM = 'assets/audio/傷心2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你發訊息說想去圖書館，原本沒預期他會那麼快回，卻突然跳出了一個……貼圖。")) {
+            targetBGM = 'assets/audio/敘事.mp3'; //第九章
+        } else if (scene.dialogue && scene.dialogue.includes("你一早踏進操場邊的集合區時，整個空地已經劃分出兩端的區域，中間拉起紅白繩界線，明確標示出120公尺的距離。喬珮昕還一邊喝著溫熱的紅豆湯圓，一邊看著活動說明書。")) {
+            targetBGM = 'assets/audio/輕快.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("測試開始。")) {
+            targetBGM = 'assets/audio/緊張.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("恭喜！第二組提前完成任務，成功拆除所有炸彈！")) {
+            targetBGM = 'assets/audio/積極2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你提早到了圖書館。")) {
+            targetBGM = 'assets/audio/向心2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("其實我本來預設是等到時間結束，拿六十分。但池景祐的想法我理解……然後我聯想到籃球，就選擇了剪線。")) {
+            targetBGM = 'assets/audio/心動.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("隔天。")) {
+            targetBGM = 'assets/audio/心動2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("情感在此刻倏忽爆發，幾乎要主宰你的心。")) {
+            targetBGM = 'assets/audio/幻想2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你剛走出校門，一邊回訊息、一邊計劃晚上哪一段複習進度要先看，腦袋被舞社表演和段考擠得幾乎快要炸開。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("時間一晃而過，轉眼就到了結業式。")) {
+            targetBGM = 'assets/audio/向心.mp3'; //第十章
+        } else if (scene.dialogue && scene.dialogue.includes("前奏響起。")) {
+            targetBGM = 'assets/audio/緊張.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("燈光定格的瞬間，掌聲雷動。")) {
+            targetBGM = 'assets/audio/積極2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你躺在床上，燈沒開，手機螢幕是房裡唯一的光。")) {
+            targetBGM = 'assets/audio/沉靜2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("再也沒有下一次了。")) {
+            targetBGM = 'assets/audio/傷心2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("大約隔了五分鐘，螢幕突然震了一下。")) {
+            targetBGM = 'assets/audio/向心.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("下午三點十二分。")) {
+            targetBGM = 'assets/audio/敘事.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("星期六中午。")) {
+            targetBGM = 'assets/audio/輕快.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("星期日午後陽光不烈，城市邊角那家咖啡廳被藏在幽靜巷弄裡，空間挑高，裡頭播著緩慢的爵士樂。")) {
+            targetBGM = 'assets/audio/爵士.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("聽完這句話，他原本的戒備微微鬆弛，眼中閃過一絲意外的柔和。沈凌琛沉默片刻。")) {
+            targetBGM = 'assets/audio/心動2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("訊息跳出來時，你正窩在沙發上看書。")) {
+            targetBGM = 'assets/audio/輕快.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("時間不早了，我先去睡覺。你也早點睡。")) {
+            targetBGM = 'assets/audio/心動.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("今天是農曆春節，你回了老家，但少見的感到有點空虛。")) {
+            targetBGM = 'assets/audio/敘事.mp3'; //第十一章
+        } else if (scene.dialogue && scene.dialogue.includes("要不要繼續前幾天的話題？")) {
+            targetBGM = 'assets/audio/向心.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("兩天後。")) {
+            targetBGM = 'assets/audio/輕快2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你抵達圖書館時，沈凌琛已經坐在靠窗的位置，桌上擺著筆記本與參考書。")) {
+            targetBGM = 'assets/audio/幻想2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("一推開門，你卻愣住了——裡頭竟然是狗狗主題咖啡廳，幾隻乖巧的小型犬在座位區活動，空間裡飄著咖啡香與輕音樂。溫暖的光線灑落在木質地板上，營造出柔和的氛圍。")) {
+            targetBGM = 'assets/audio/心動.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你仰躺在床上，手機螢幕光芒映在臉上，嘴角還帶著難以抑制的微笑。")) {
+            targetBGM = 'assets/audio/幻想.mp3'; //第十二章
+        } else if (scene.dialogue && scene.dialogue.includes("你站在鏡子前，已經換了第三套衣服。")) {
+            targetBGM = 'assets/audio/向心2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("或許無意識的行為更能表達我自己呢。")) {
+            targetBGM = 'assets/audio/向心.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("下學期的開學第三天，熱鬧的校園生活讓我懷念起寒假的悠閒。正當你在課堂上昏昏欲睡時，手機震動了一下。")) {
+            targetBGM = 'assets/audio/敘事.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("第十二章 終")) {
+            targetBGM = 'assets/audio/積極.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("在那之後，又過了幾天。")) {
+            targetBGM = 'assets/audio/輕快2.mp3'; //第十三章
+        } else if (scene.dialogue && scene.dialogue.includes("校慶當天的校園熱鬧非凡，彩旗飄揚，歡笑聲此起彼落。")) {
+            targetBGM = 'assets/audio/心動2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("遊戲結束時，沈凌琛站在原地，神情一如往常地冷靜，眼神卻沒再看向他人。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("這道題你會做嗎？")) {
+            targetBGM = 'assets/audio/幻想2.mp3'; //第十四章
+        } else if (scene.dialogue && scene.dialogue.includes("你如往常留下來打籃球。這是近來難得的放鬆時刻，陽光正好，微風徐徐。")) {
+            targetBGM = 'assets/audio/輕快.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你們一來一往，配合默契。在一次防守時，你冷不防被對手撞到，失去平衡向後倒去。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("春末的微風裡已有了幾分暑氣，讓人不得不尋找一處避暑的天地。")) {
+            targetBGM = 'assets/audio/沉靜2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("順其自然吧，反正最後都會融化。")) {
+            targetBGM = 'assets/audio/傷心2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("就在這時，一個熟悉的聲音從身旁傳來。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("說真的，我根本不在意這場狼人殺遊戲的輸贏。")) {
+            targetBGM = 'assets/audio/幻想2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("遊戲開始。")) {
+            targetBGM = 'assets/audio/幻想.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("嗯，似乎該做正事了呢。")) {
+            targetBGM = 'assets/audio/緊張.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("然而，他表情沒什麼異動，彷彿沒發現你剛才那刻意的錯誤。")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("好了，換沈凌琛發言了。")) {
+            targetBGM = 'assets/audio/緊張.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("他真的沒發現我的暗示嗎...？")) {
+            targetBGM = 'assets/audio/沉靜1.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("遊戲結束，狼人勝利。")) {
+            targetBGM = 'assets/audio/傷心.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("那家店，和他來過幾次呢。")) {
+            targetBGM = 'assets/audio/傷心.mp3'; //第十五章
+        } else if (scene.dialogue && scene.dialogue.includes("然而，這次他竟然主動拉緊你的手。")) {
+            targetBGM = 'assets/audio/沉靜2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("隨後小聲低喃：確實呢。")) {
+            targetBGM = 'assets/audio/心動2.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("你願意，跟我在一起嗎？")) {
+            targetBGM = 'assets/audio/心動.mp3';
+        } else if (scene.dialogue && scene.dialogue.includes("第十五章，終")) {
+            targetBGM = 'assets/audio/積極.mp3';
         }
+
+
         // 如果當前音樂與目標音樂不同，則切換
         if (this.currentBGM !== targetBGM) {
             this.playBGM(targetBGM);
@@ -470,6 +757,35 @@ class GameCore {
                 this.resetGame();
             }
         });
+
+        // 添加狼人杀规则按钮事件
+        this.btnWerewolfRules.addEventListener('click', () => {
+            this.werewolfRulePage = 1;
+            this.showWerewolfRules();
+        });
+    }
+
+    // 显示狼人杀规则
+    showWerewolfRules() {
+        this.werewolfRulesLayer.style.display = 'block';
+        this.werewolfRulesLayer.innerHTML = `
+            <img src="assets/天黑請閉眼_${this.werewolfRulePage}.jpg" style="max-width: 100%; max-height: 90%; object-fit: contain;">
+            <div style="margin-top: 10px;">
+                <button onclick="gameCore.nextWerewolfRulePage()" style="padding: 5px 15px; margin: 0 5px;">${this.werewolfRulePage === 1 ? '下一頁' : '上一頁'}</button>
+                <button onclick="gameCore.hideWerewolfRules()" style="padding: 5px 15px; margin: 0 5px;">關閉</button>
+            </div>
+        `;
+    }
+
+    // 切换规则页面
+    nextWerewolfRulePage() {
+        this.werewolfRulePage = this.werewolfRulePage === 1 ? 2 : 1;
+        this.showWerewolfRules();
+    }
+
+    // 隐藏规则
+    hideWerewolfRules() {
+        this.werewolfRulesLayer.style.display = 'none';
     }
 }
 

@@ -64,9 +64,9 @@ html, body {
 
 .character {
     position: absolute;
-    bottom: 0;
-    width: 400px;
-    height: 600px;
+    bottom: -20px;
+    width: 450px;
+    height: 650px;
     background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -79,16 +79,18 @@ html, body {
 }
 
 .character.left {
-    left: 50px;
+    left: 100px;
+    transform: translateX(0) scale(1.1);
 }
 
 .character.center {
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(1.1);
 }
 
 .character.right {
-    right: 50px;
+    right: 100px;
+    transform: translateX(0) scale(1.1);
 }
 
 /* 對話層 */
