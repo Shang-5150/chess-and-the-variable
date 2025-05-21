@@ -364,7 +364,11 @@ html, body {
 }
 
 .speaker-shen {
-    color: #9c27b0; /* 沈凌琛顏色 - 紫色 */
+    color: #c82626; /* 沈凌琛顏色 - 紫色 */
+}
+
+.speaker-lee {
+    color: #aa8cbd; /* 沈凌琛顏色 - 紫色 */
 }
 
 .speaker-inner {

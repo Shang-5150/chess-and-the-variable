@@ -801,13 +801,13 @@ const chapter2 = {
         {
           "background": "assets/background/籃球場背景.jpg",
           "characters": ["主角"],
-          "dialogue": "剎那間，我的意念隨著腳步躍起，騰空，後仰，自然而流暢的……",
+          "dialogue": "試試上籃好了。",
           "speaker": "內心獨白"
-        },
+        },        
         {
           "background": "assets/background/籃球場背景.jpg",
           "characters": ["主角"],
-          "dialogue": "試試上籃好了。",
+          "dialogue": "剎那間，我的意念隨著腳步躍起，騰空，後仰，自然而流暢的……",
           "speaker": "內心獨白"
         },
         {
@@ -1289,7 +1289,7 @@ const chapter3 = {
       {
         "background": "assets/background/教室背景.jpg",
         "characters": [],
-        "dialogue": "學姐，你今天有要去社團練習嗎？",
+        "dialogue": "你今天有要去社團練習嗎？",
         "speaker": "何依蓓"
       },
       {
@@ -1426,9 +1426,9 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "這次分隊，你跟何依蓓一隊；沈凌琛則在敵隊。",
-        "speaker": "內心獨白"
+        "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
@@ -1456,9 +1456,9 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
-        "dialogue": "趁著對方來不及回防，我們快速傳球、配合，順暢的上籃得分。",
-        "speaker": "內心獨白"
+        "characters": [],
+        "dialogue": "趁著對方來不及回防，你們快速傳球、配合，順暢的上籃得分。",
+        "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
@@ -1486,15 +1486,15 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "唰～",
-        "speaker": "內心獨白"
+        "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "一計完美的三分球。",
-        "speaker": "內心獨白"
+        "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
@@ -1504,20 +1504,20 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "你有些佩服。",
         "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "而後幾球，雙方都有所勝負。",
         "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
-        "dialogue": "最終戰果出爐，沈凌琛隊伍獲勝，但我們也拿了不少分數。",
+        "characters": [],
+        "dialogue": "最終戰果出爐，沈凌琛隊伍獲勝，但你們也拿了不少分數。",
         "speaker": ""
       },
       {
@@ -1546,13 +1546,13 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": [""],
+        "characters": [],
         "dialogue": "休息一下後，球賽就要繼續。",
         "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": [""],
+        "characters": [],
         "dialogue": "但你還要去自主練習，所以提早離開了。",
         "speaker": ""
       },
@@ -1594,13 +1594,13 @@ const chapter3 = {
       },
       {
         "background": "assets/background/教室背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "隨著最後一堂課的下課鐘聲響起，你將英文講義翻開，開始研讀。",
         "speaker": ""
       },
       {
         "background": "assets/background/教室背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "但才過不到十分鐘，你就坐不住了，所以你放下書本，到了籃球場。",
         "speaker": ""
       },
@@ -1612,7 +1612,7 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "你按照之前的經驗，報隊加入了他們。",
         "speaker": ""
       },
@@ -1642,7 +1642,7 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "兩回合過後。",
         "speaker": ""
       },
@@ -1672,13 +1672,13 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "之後連續兩三天，你每天放學都問同學要不要去打球。",
         "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "有位同學問你：最近是愛上打球了嗎？",
         "speaker": ""
       },
@@ -1690,19 +1690,19 @@ const chapter3 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "總之，他都還是沒有出現。",
         "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "你每日打球時視線都會不自主地飄向其他地方，期待在某個回頭的瞬間，可以看到他。",
         "speaker": ""
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
+        "characters": [],
         "dialogue": "但這次似乎沒有這樣的好運氣了。",
         "speaker": ""
       }
@@ -1767,7 +1767,7 @@ const chapter4 = {
     {
       "background": "assets/background/籃球場背景.jpg",
       "characters": ["主角"],
-      "dialogue": "我們這裡共有四個女生。",
+      "dialogue": "我們這裡共有四個人。",
       "speaker": "主角"
     },
     {
@@ -2002,7 +2002,7 @@ const chapter4 = {
       "background": "assets/background/籃球場背景.jpg",
       "character": [],
       "speaker": "",
-      "dialogue": "不過，他的朋友經過你時笑著跟你說：「掰囉～你今天投得很準喔。」"
+      "dialogue": "不過，他的朋友經過你時笑著跟你說：「拜拜～你今天投得很準喔。」"
     },
     {
       "background": "assets/background/籃球場背景.jpg",
@@ -2014,7 +2014,7 @@ const chapter4 = {
       "background": "assets/background/籃球場背景.jpg",
       "character": ["主角"],
       "speaker": "主角",
-      "dialogue": "掰～"
+      "dialogue": "拜拜，下次見～"
     },
     {
       "background": "assets/background/籃球場背景.jpg",
@@ -2029,91 +2029,91 @@ const chapter4 = {
       "dialogue": "他的朋友有點可愛呢。"
     }, 
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "回家的路上，風有點涼，你踩著夕陽餘暉投下的長影，一邊走，一邊回想起剛剛的比賽。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": ["主角"],
       "speaker": "內心獨白",
       "dialogue": "如果他一週只打一次球……那我要怎麼跟他熟起來啊。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "這個念頭讓你忍不住嘆了口氣。比起認識，現在連正眼對話的機會都沒有，更別提熟絡了。你也不太敢在打球時找他說話，總覺得在球場上不適合。至於比賽結束時，他也都是跟朋友們閒聊，你根本沒機會搭話。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": ["主角"],
       "speaker": "內心獨白",
       "dialogue": "唉……"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "不知怎地，腦海裡浮現他那位朋友的笑臉——就是那個在離開前，跟你說「你今天投得很帥喔」的男生。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": ["主角"],
       "speaker": "內心獨白",
       "dialogue": "先去認識他朋友吧，說不定是個突破口。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "這個念頭像是微光劃破暮色，讓你忽然有了點盼頭。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "你在心裡默默立下這個目標，雖然知道聽起來很遠、很難實現，但也不打算退縮。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "不過，接下來的日子似乎沒那麼輕鬆。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "這段時間，課業壓力繁重，作業和考試堆得像山一樣。而最佔時間的，是你的社團——鎖舞社。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "內心獨白",
       "dialogue": "結業式晚上要上台表演，能不能在時限內調整好所有動作都是問題。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "每週中午和放學，你和社團的大家都會在活動中心練習，幾乎沒有休息時間。跳完一整段舞、汗如雨下的時候，連午餐都只能三兩下扒完。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "你有時候真的覺得好累，腳好酸，肢體也不聽使喚。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": ["主角"],
       "speaker": "內心獨白",
       "dialogue": "如果能躺在床上就好了。"
     },
     {
-      "background": "assets/background/黃昏街道.jpg",
+      "background": "assets/background/黃昏街道背景.jpg",
       "character": [],
       "speaker": "",
       "dialogue": "但即使這麼想，練習當天，你還是會自動自發地提早去佔音響，拉開綁腿、熱身，然後再一次投入那段熟悉的旋律裡。"
@@ -2122,7 +2122,7 @@ const chapter4 = {
       "background": "assets/background/籃球場背景2.jpg",
       "character": [],
       "speaker": "",
-      "dialogue": "早晨的太陽曬得刺眼。雖然嘴上說著只是陪打，但內心還是有點小期待的——"
+      "dialogue": "早晨的太陽曬得刺眼，站在場邊等開賽。雖然嘴上說著只是陪打，但內心還是有點小期待的——"
     },
     {
       "background": "assets/background/籃球場背景2.jpg",
@@ -2614,8 +2614,8 @@ const chapter5 = {
       },
       {
         "background": "assets/background/籃球場背景.jpg",
-        "characters": ["主角"],
-        "speaker": "內心獨白",
+        "characters": [],
+        "speaker": "",
         "dialogue": "你在心裡無奈吐槽。"
       },
       {
@@ -2640,7 +2640,7 @@ const chapter5 = {
         "background": "assets/background/籃球場背景.jpg",
         "character": [],
         "speaker": "",
-        "dialogue": "他還順便翻了個白眼，表情有點無奈又有點無語。"
+        "dialogue": "他還順便對他朋友翻了個白眼，表情有點無奈又有點無語。"
       },
       {
         "background": "assets/background/籃球場背景.jpg",
@@ -2848,7 +2848,7 @@ const chapter6 = {
       {
         "background": "assets/background/操場背景.jpg",
         "character": ["主角"],
-        "speaker": "",
+        "speaker": "內心獨白",
         "dialogue": "但……也只能這樣了吧。"
       },
       {
@@ -3017,7 +3017,13 @@ const chapter6 = {
         "background": "assets/background/圖書館背景.jpg",
         "character": [],
         "speaker": "",
-        "dialogue": "你趕緊接話：是說，我至少跟你打過三次球吧？"
+        "dialogue": "你趕緊接話。"
+      },
+      {
+        "background": "assets/background/圖書館背景.jpg",
+        "character": ["主角"],
+        "speaker": "主角",
+        "dialogue": "是說，我至少跟你打過三次球吧？"
       },
       {
         "background": "assets/background/圖書館背景.jpg",
@@ -3233,7 +3239,13 @@ const chapter6 = {
         "background": "assets/background/圖書館背景.jpg",
         "character": [],
         "speaker": "",
-        "dialogue": "你略帶自嘲地笑道：厲害吧。沒有，其實我高中才接觸，可能舞技有點拙劣。"
+        "dialogue": "你略帶自嘲地笑，說道："
+      },
+      {
+        "background": "assets/background/圖書館背景.jpg",
+        "character": ["主角"],
+        "speaker": "主角",
+        "dialogue": "厲害吧。沒有，其實我高中才接觸，可能舞技有點拙劣。"
       },
       {
         "background": "assets/background/圖書館背景.jpg",
@@ -3716,8 +3728,8 @@ const chapter7 = {
       },
       {
         "background": "assets/background/圖書館背景.jpg",
-        "character": ["主角"],
-        "speaker": "內心獨白",
+        "character": [],
+        "speaker": "",
         "dialogue": "不知為何，你心裡莫名的感到一絲暖意。"
       },
       {
@@ -4856,14 +4868,14 @@ const chapter7 = {
       },
       {
         "background": "assets/background/圖書館背景.jpg",
-        "speaker": "內心獨白",
-        "character": ["主角"],
+        "speaker": "",
+        "character": [],
         "dialogue": "你看著這兩人，心裡突然覺得很妙。"
       },
       {
         "background": "assets/background/圖書館背景.jpg",
-        "speaker": "內心獨白",
-        "character": ["主角"],
+        "speaker": "",
+        "character": [],
         "dialogue": "性格完全不同的兩個人，一個冷靜自律到像電腦程式，一個熱情自在像陽光，現在都在你身邊……而你，正坐在他們之間，喝著免費咖啡，翻著交換來的筆記。"
       },
       {
@@ -4924,7 +4936,7 @@ const chapter7 = {
         "background": "assets/background/昏暗房間背景.jpg",
         "speaker": "李曜辰",
         "character": ["李曜辰"],
-        "dialogue": "有空也不來排球場看看，太傷心了吧"
+        "dialogue": "有空也不來排球場看看，太傷心了吧~"
       },
       {
         "background": "assets/background/昏暗房間背景.jpg",
@@ -5817,7 +5829,7 @@ const chapter8 = {
       "background": "assets/background/走廊背景.jpg",
       "speaker": "",
       "character": [],
-      "dialogue": "李曜辰似乎早就看到你了，朝他揮了揮手，笑得自然。"
+      "dialogue": "李曜辰似乎早就看到你了，朝你揮了揮手，笑得自然。"
     },
     {
       "background": "assets/background/走廊背景.jpg",
@@ -5949,7 +5961,7 @@ const chapter8 = {
       "background": "assets/background/合作社背景.jpg",
       "speaker": "李曜辰",
       "character": ["李曜辰"],
-      "dialogue": "欸，那天聖誕節晚上，你有去圖書館對吧？"
+      "dialogue": "欸，那天聖誕節傍晚，你有去圖書館對吧？"
     },
     {
       "background": "assets/background/合作社背景.jpg",
@@ -6284,7 +6296,7 @@ const chapter9 = {
       "background": "assets/background/圖書館背景.jpg",
       "speaker": "主角",
       "character": ["主角"],
-      "dialogue": "真的假的？還是你默默蒐藏了一堆貓的貼圖只是平常沒用？"
+      "dialogue": "真的假的？還是你默默收藏了一堆貓的貼圖只是平常沒用？"
     },
     {
       "background": "assets/background/圖書館背景.jpg",
@@ -6896,7 +6908,7 @@ const chapter9 = {
       "background": "assets/background/圖書館背景.jpg",
       "speaker": "沈凌琛",
       "character": ["沈凌琛"],
-      "dialogue": "其實我本來預設是等到時間結束，拿六十分。但池景祐的想法我理解……然後我聯想到籃球，就選擇了剪線。"
+      "dialogue": "其實我本來預設是等到時間結束，扣六十分。但池景祐的想法我理解……然後我聯想到籃球，就選擇了剪線。"
     },
     {
       "background": "assets/background/圖書館背景.jpg",
@@ -8057,14 +8069,14 @@ const chapter10 = {
       },
       {
         "background": "assets/background/圖書館背景.jpg",
-        "speaker": "",
-        "character": [],
+        "speaker": "內心獨白",
+        "character": ["主角"],
         "dialogue": "這個下午，我們只是靜靜地看著書，沒有多說什麼。"
       },
       {
         "background": "assets/background/圖書館背景.jpg",
-        "speaker": "",
-        "character": [],
+        "speaker": "內心獨白",
+        "character": ["主角"],
         "dialogue": "但這種不說話也不會感到尷尬的氛圍，使我們彼此都很自在。"
       },
       {
@@ -9809,7 +9821,7 @@ const chapter12 = {
         "background": "assets/background/昏暗房間背景.jpg",
         "speaker": "內心獨白",
         "character": ["主角"],
-        "dialogue": "也許，你該更主動一點。"
+        "dialogue": "也許，我該更主動一點。"
       },
       {
         "background": "assets/background/昏暗房間背景.jpg",
@@ -9915,8 +9927,8 @@ const chapter12 = {
       },
       {
         "background": "assets/background/昏暗房間背景.jpg",
-        "speaker": "內心獨白",
-        "character": ["主角"],
+        "speaker": "",
+        "character": [],
         "dialogue": "海風、陽光、還有——他。"
       },
       {
@@ -10091,7 +10103,7 @@ const chapter12 = {
         "background": "assets/background/海邊背景.jpg",
         "speaker": "",
         "character": [],
-        "dialogue": "但站姿和他臉龐稍稍凍紅的神色告訴你，他已經等了有一段時間。"
+        "dialogue": "但從站姿和他稍稍凍紅的臉頰，你知道他已經等了有一段時間。"
       },
       {
         "background": "assets/background/海邊背景.jpg",
@@ -10176,12 +10188,6 @@ const chapter12 = {
         "speaker": "主角",
         "character": ["主角"],
         "dialogue": "你好像總能預判到事情的走向，在危機來臨前就做好準備。"
-      },
-      {
-        "background": "assets/background/海邊背景.jpg",
-        "speaker": "",
-        "character": [],
-        "dialogue": "沈凌琛輕輕笑了。"
       },
       {
         "background": "assets/background/海邊背景.jpg",
@@ -10793,7 +10799,7 @@ const chapter12 = {
         "background": "assets/background/黃昏街道背景.jpg",
         "speaker": "",
         "character": [],
-        "dialogue": "放學後。"
+        "dialogue": "下午放學時間。"
       },
       {
         "background": "assets/background/黃昏街道背景.jpg",
@@ -10943,7 +10949,7 @@ const chapter12 = {
         "background": "assets/background/冰店背景.jpg",
         "speaker": "",
         "character": [],
-        "dialogue": "第十二章，終"
+        "dialogue": "第十二章 終"
       }
     ]
 };
@@ -13820,7 +13826,7 @@ const chapter15 = {
       "background": "assets/background/河濱背景.jpg",
       "speaker": "",
       "character": [],
-      "dialogue": "一想到這，你的眼淚再度不爭氣地落下。"
+      "dialogue": "一想到這，一行清淚靜靜垂下，像情緒輕輕鬆動了一角。"
     },
     {
       "background": "assets/background/河濱背景.jpg",
@@ -13982,7 +13988,7 @@ const chapter15 = {
       "background": "assets/background/河濱背景.jpg",
       "speaker": "",
       "character": [],
-      "dialogue": "第十五章，終"
+      "dialogue": "全文終。"
     }
   ]
 }

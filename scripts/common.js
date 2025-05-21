@@ -173,33 +173,46 @@ class GameCore {
         this.dialogueBox.style.display = 'block';
         this.dialogueBox.classList.remove('hidden');
         
-        this.characterName.textContent = speaker;
+        // 如果是主角的对话，使用玩家输入的名字
+        if (speaker === '主角') {
+            this.characterName.textContent = this.playerName;
+        } else if (speaker === '7號（主角）') {
+            this.characterName.textContent = '7號（' + this.playerName + '）';
+        } else {
+            this.characterName.textContent = speaker;
+        }
+
+        // 替换对话文本中的"主角"和"7號"为玩家名字
+        let displayText = text;
+        if (this.playerName) {
+            displayText = text.replace(/主角|7號/g, this.playerName);
+        }
         this.dialogueText.textContent = '';
 
         let speakerClass = 'speaker-other';
-        if (speaker === '主角') speakerClass = 'speaker-main';
+        if (speaker === '主角' || speaker === '7號') speakerClass = 'speaker-main';
         else if (speaker === '沈凌琛') speakerClass = 'speaker-shen';
-        else if (speaker === '李曜辰') speakerClass = 'speaker-shen';
+        else if (speaker === '李曜辰') speakerClass = 'speaker-lee';
         else if (speaker === '內心獨白') speakerClass = 'speaker-inner';
         
         this.characterName.className = speakerClass;
-        this.addToHistory(text, speaker);
+        this.addToHistory(displayText, (speaker === '主角' || speaker === '7號') ? this.playerName : speaker);
 
         if (this.isFastForward) {
             // 快轉模式：直接顯示文字
-            this.dialogueText.textContent = text;
+            this.dialogueText.textContent = displayText;
             this.isTyping = false;
             this.isDialogueComplete = true;
             return;
         }
 
         // 正常模式：逐字顯示
-        for (let i = 0; i < text.length && this.isTyping; i++) {
-            this.dialogueText.textContent += text[i];
+        for (let i = 0; i < displayText.length && this.isTyping; i++) {
+            this.dialogueText.textContent += displayText[i];
             await this.sleep(this.textSpeed);
         }
 
-        this.dialogueText.textContent = text;
+        this.dialogueText.textContent = displayText;
         this.isTyping = false;
         this.isDialogueComplete = true;
     }
@@ -255,13 +268,15 @@ class GameCore {
     }
 
     // 播放背景音樂
-    playBGM(musicPath) {
+    async playBGM(musicPath) {
         // 如果是同一首BGM，不要重新播放
         if (this.currentBGM === musicPath) {
             return;
         }
 
+        // 淡出当前音乐
         if (this.bgm) {
+            await this.fadeOut(this.bgm);
             this.bgm.pause();
             this.bgm = null;
         }
@@ -269,14 +284,49 @@ class GameCore {
         this.currentBGM = musicPath;
         this.bgm = new Audio(musicPath);
         this.bgm.loop = true;
+        this.bgm.volume = 0; // 初始音量为0
         this.bgm.volume = this.isMuted ? 0 : 1;
         
         // 添加錯誤處理
-        this.bgm.play().catch(error => {
+        try {
+            await this.bgm.play();
+            // 淡入新音乐
+            await this.fadeIn(this.bgm);
+        } catch (error) {
             console.error('BGM播放失敗:', error);
             this.bgm = null;
             this.currentBGM = '';
-        });
+        }
+    }
+
+    // 淡出效果
+    async fadeOut(audio) {
+        const fadeOutDuration = 1000; // 1秒淡出
+        const steps = 20; // 20步完成淡出
+        const stepDuration = fadeOutDuration / steps;
+        const volumeStep = audio.volume / steps;
+
+        for (let i = 0; i < steps; i++) {
+            audio.volume = Math.max(0, audio.volume - volumeStep);
+            await this.sleep(stepDuration);
+        }
+        audio.volume = 0;
+    }
+
+    // 淡入效果
+    async fadeIn(audio) {
+        const fadeInDuration = 1000; // 1秒淡入
+        const steps = 20; // 20步完成淡入
+        const stepDuration = fadeInDuration / steps;
+        const targetVolume = this.isMuted ? 0 : 1;
+        const volumeStep = targetVolume / steps;
+
+        audio.volume = 0;
+        for (let i = 0; i < steps; i++) {
+            audio.volume = Math.min(targetVolume, audio.volume + volumeStep);
+            await this.sleep(stepDuration);
+        }
+        audio.volume = targetVolume;
     }
 
     // 播放轉場動畫
@@ -348,7 +398,7 @@ class GameCore {
             await this.playTransition('assets/video/4-1.mp4');
         }else if (scene.dialogue === "你掃了一眼，就看到多日未見的沈凌琛。") {
             await this.playTransition('assets/video/4-2.mp4');
-        }else if (scene.dialogue === "早晨的太陽曬得刺眼。雖然嘴上說著只是陪打，但內心還是有點小期待的——") {
+        }else if (scene.dialogue === "早晨的太陽曬得刺眼，站在場邊等開賽。雖然嘴上說著只是陪打，但內心還是有點小期待的——") {
             await this.playTransition('assets/video/4-3.mp4');
         }else if (scene.dialogue === "練習後，你拿著水壺，準備要回教室。") {
             await this.playTransition('assets/video/4-4.mp4');
@@ -396,7 +446,7 @@ class GameCore {
             await this.playTransition('assets/video/12-2.mp4');
         }else if (scene.dialogue === "下學期的開學第三天，熱鬧的校園生活讓我懷念起寒假的悠閒。正當你在課堂上昏昏欲睡時，手機震動了一下。") {
             await this.playTransition('assets/video/12-3.mp4');
-        }else if (scene.dialogue === "第十二章，終") {
+        }else if (scene.dialogue === "第十二章 終") {
             await this.playTransition('assets/video/12-4.mp4');
         }else if (scene.dialogue === "在那之後，又過了幾天。") {
             await this.playTransition('assets/video/13-1.mp4');
@@ -412,7 +462,7 @@ class GameCore {
             await this.playTransition('assets/video/14-4.mp4');
         }else if (scene.dialogue === "那家店，和他來過幾次呢。") {
             await this.playTransition('assets/video/15-1.mp4');
-        }else if (scene.dialogue === "第十五章，終") {
+        }else if (scene.dialogue === "全文終。") {
             await this.playTransition('assets/video/15-2.mp4');
         }
         
@@ -425,7 +475,9 @@ class GameCore {
         // 比較當前場景和新場景的角色是否相同
         const currentCharacters = Array.from(this.characterLayer.children).map(char => 
             char.style.backgroundImage.match(/characters\/(.+?)\./)[1]);
-        const newCharacters = scene.characters || [];
+        const newCharacters = Array.isArray(scene.characters) ? scene.characters : 
+                            Array.isArray(scene.character) ? scene.character : 
+                            scene.character ? [scene.character] : [];
         
         // 只有當角色發生變化時才更新
         if (JSON.stringify(currentCharacters) !== JSON.stringify(newCharacters)) {
@@ -480,16 +532,14 @@ class GameCore {
         } else if (scene.dialogue && scene.dialogue.includes("十一月二十二日，放學。")) {
             targetBGM = 'assets/audio/敘事.mp3'; // 第三章
         } else if (scene.dialogue && scene.dialogue.includes("這就是要我們一起打球的人！")) {
-            targetBGM = 'assets/audio/積極2.mp3';
+            targetBGM = 'assets/audio/向心.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("上週已經打了好幾天球，今天就把時間拿來讀書吧。")) {
             targetBGM = 'assets/audio/敘事.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("隨著時間推移，你似乎已經沒那麼麼在意了。")) {
-            targetBGM = 'assets/audio/輕快.mp3'; // 第四章
-        } else if (scene.dialogue && scene.dialogue.includes("你掃了一眼，就看到多日未見的沈凌琛。他專心的看著書，沒注意到你。")) {
-            targetBGM = 'assets/audio/向心.mp3';
+            targetBGM = 'assets/audio/輕快2.mp3'; // 第四章
         } else if (scene.dialogue && scene.dialogue.includes("回家的路上，風有點涼，你踩著夕陽餘暉投下的長影，一邊走，一邊回想起剛剛的比賽。")) {
             targetBGM = 'assets/audio/沉靜1.mp3';
-        } else if (scene.dialogue && scene.dialogue.includes("早晨的太陽曬得刺眼。雖然嘴上說著只是陪打，但內心還是有點小期待的——")) {
+        } else if (scene.dialogue && scene.dialogue.includes("早晨的太陽曬得刺眼，站在場邊等開賽。雖然嘴上說著只是陪打，但內心還是有點小期待的——")) {
             targetBGM = 'assets/audio/沉靜2.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("練習後，你拿著水壺，準備要回教室。")) {
             targetBGM = 'assets/audio/輕快2.mp3';
@@ -532,7 +582,7 @@ class GameCore {
         } else if (scene.dialogue && scene.dialogue.includes("中午下課後，你剛結束練舞，滿身是汗，耳邊還殘留著音樂節拍的餘震。懶洋洋地踱步到合作社，想買瓶水再順便找點甜的補補元氣。")) {
             targetBGM = 'assets/audio/輕快2.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("你正出神著，李曜辰忽然歪過頭問。")) {
-            targetBGM = 'assets/audio/傷心2.mp3';
+            targetBGM = 'assets/audio/沉靜1.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("你發訊息說想去圖書館，原本沒預期他會那麼快回，卻突然跳出了一個……貼圖。")) {
             targetBGM = 'assets/audio/敘事.mp3'; //第九章
         } else if (scene.dialogue && scene.dialogue.includes("你一早踏進操場邊的集合區時，整個空地已經劃分出兩端的區域，中間拉起紅白繩界線，明確標示出120公尺的距離。喬珮昕還一邊喝著溫熱的紅豆湯圓，一邊看著活動說明書。")) {
@@ -588,7 +638,7 @@ class GameCore {
         } else if (scene.dialogue && scene.dialogue.includes("你仰躺在床上，手機螢幕光芒映在臉上，嘴角還帶著難以抑制的微笑。")) {
             targetBGM = 'assets/audio/幻想.mp3'; //第十二章
         } else if (scene.dialogue && scene.dialogue.includes("你站在鏡子前，已經換了第三套衣服。")) {
-            targetBGM = 'assets/audio/向心2.mp3';
+            targetBGM = 'assets/audio/心動2.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("或許無意識的行為更能表達我自己呢。")) {
             targetBGM = 'assets/audio/向心.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("下學期的開學第三天，熱鬧的校園生活讓我懷念起寒假的悠閒。正當你在課堂上昏昏欲睡時，手機震動了一下。")) {
@@ -635,7 +685,7 @@ class GameCore {
             targetBGM = 'assets/audio/心動2.mp3';
         } else if (scene.dialogue && scene.dialogue.includes("你願意，跟我在一起嗎？")) {
             targetBGM = 'assets/audio/心動.mp3';
-        } else if (scene.dialogue && scene.dialogue.includes("第十五章，終")) {
+        } else if (scene.dialogue && scene.dialogue.includes("全文終。")) {
             targetBGM = 'assets/audio/積極.mp3';
         }
 
@@ -684,12 +734,17 @@ class GameCore {
     }
 
     // 切換靜音
-    toggleMute() {
+    async toggleMute() {
         this.isMuted = !this.isMuted;
-        if (this.bgm) {
-            this.bgm.volume = this.isMuted ? 0 : 1;
-        }
         this.btnMute.classList.toggle('active');
+        
+        if (this.bgm) {
+            if (this.isMuted) {
+                this.bgm.volume = 0;
+            } else {
+                this.bgm.volume = 1;
+            }
+        }
     }
 
     // 綁定事件
