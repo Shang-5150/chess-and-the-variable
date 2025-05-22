@@ -349,7 +349,12 @@ class GameCore {
             await video.play();
             
             // 監聽視頻結束
-            video.onended = () => {
+            video.onended = async () => {
+                // 如果是 15-2.mp4，額外等待 5 秒
+                if (videoPath.includes('15-2.mp4')) {
+                    await this.sleep(5000);
+                }
+                
                 transitionLayer.style.display = 'none';
                 video.src = '';
                 buttons.style.display = 'flex';
@@ -378,7 +383,10 @@ class GameCore {
         // 檢查是否需要播放章節動畫
         if (scene.dialogue === "四天後，早上的教室內。") {
             await this.playTransition('assets/video/1-2.mp4');
-        } else if (scene.dialogue === "中午，學務處。") {
+        }else if (scene.dialogue === "現在是2024年的10月10日，距離大學入學考還剩下400多天左右。") {
+            await this.playTransition('assets/video/1-1.mp4');
+        }
+        else if (scene.dialogue === "中午，學務處。") {
             await this.playTransition('assets/video/1-3.mp4');
         }else if (scene.dialogue === "第一章 終") {
             await this.playTransition('assets/video/1-4.mp4');

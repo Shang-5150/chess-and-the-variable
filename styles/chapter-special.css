@@ -45,35 +45,37 @@ html, body {
 .main-character {
     left: 50%;
     transform: translateX(-50%);
-    height: 85vh;
+    height: 80vh;
+
 }
 
 /* 沈凌琛特别设定 */
 .character[style*="沈凌琛"] {
     height: 95vh !important;
-    transform: scale(1.3);
+   
     transform-origin: bottom center;
-    bottom: -30vh;
+    bottom: -10vh;
 }
 
 /* 沈凌琛单独出现时的位置 */
 .character[style*="沈凌琛"]:only-child {
     left: 50% !important;
-    transform: translateX(-50%) scale(1.3) !important;
+    transform: translateX(-50%) !important;
+    
 }
 
 /* 沈凌琛与其他角色一起出现时的位置 */
 .character[style*="沈凌琛"]:not(:only-child) {
     left: 50% !important;
-    transform: scale(1.3) !important;
+   
 }
 
 /* 李曜辰特別設定 */
 .character[style*="李曜辰"] {
     height: 95vh !important;
-    transform: scale(1.3);
+    left: 50% !important;
     transform-origin: bottom center;
-    bottom: -30vh;  /* 向下移動 */
+    bottom: -10vh;  /* 向下移動 */
 }
 
 /* 顯示狀態 */

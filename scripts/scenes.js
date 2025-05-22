@@ -12715,7 +12715,13 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "提示",
+        "character": [],
+        "dialogue": "右上角可開啟遊戲規則，供參考。"
+      },
+      {
+        "background": "assets/background/狼人殺背景.jpg",
+        "speaker": "天神",
         "character": [],
         "dialogue": "天黑請閉眼。狼人請睜眼。請選擇今晚要殺的對象。"
       },
@@ -12769,7 +12775,7 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "狼人請閉眼。預言家請睜眼。選擇你今晚要查驗的對象。預言家請閉眼。女巫請睜眼...獵人請睜眼。獵人請閉眼。"
       },
@@ -12781,7 +12787,7 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "天亮了。昨晚是平安夜，由6號玩家開始順序發言。"
       },
@@ -12907,19 +12913,19 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "發言結束，開始投票。請選擇要放逐的玩家。"
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "投票結果：2號：1號、4號、9號；4號：2號、3號、5號、7號、8號；棄票：6號"
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "4號玩家被放逐，請發表遺言。"
       },
@@ -12937,7 +12943,7 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "天黑請閉眼。狼人請睜眼。選擇今晚要殺的對象。"
       },
@@ -12967,7 +12973,7 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "昨晚2號、8號死了，6號玩家開始順序發言。"
       },
@@ -13249,7 +13255,7 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "投票結果：5號：1號、6號；6號：3號、5號、7號、9號。"
       },
@@ -13267,19 +13273,19 @@ const chapter14 = {
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "天黑請閉眼。狼人請睜眼。請選擇今晚要殺的對象……天亮了。"
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "昨晚，9號被殺了。"
       },
       {
         "background": "assets/background/狼人殺背景.jpg",
-        "speaker": "旁白",
+        "speaker": "天神",
         "character": [],
         "dialogue": "遊戲結束，狼人勝利。"
       },
