@@ -32,39 +32,48 @@ html, body {
 /* 遊戲容器 */
 #game-container {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background-color: #000;
 }
 
 /* 背景層 */
 #background-layer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     transition: opacity 0.5s ease;
 }
 
 /* 角色層 */
 #character-layer {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .character {
     position: absolute;
-    bottom: -20px;
+    bottom: 0;
     width: 450px;
     height: 650px;
     background-size: contain;
@@ -79,7 +88,7 @@ html, body {
 }
 
 .character.left {
-    left: 100px;
+    left: 10%;
     transform: translateX(0) scale(1.1);
 }
 
@@ -89,7 +98,7 @@ html, body {
 }
 
 .character.right {
-    right: 100px;
+    right: 10%;
     transform: translateX(0) scale(1.1);
 }
 
@@ -97,8 +106,12 @@ html, body {
 #dialogue-layer {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
     z-index: 30;
+    padding: 20px;
 }
 
 #dialogue-box {
@@ -110,6 +123,7 @@ html, body {
     min-height: 150px;
     position: relative;
     cursor: pointer;
+    width: 100%;
 }
 
 #dialogue-box:hover {
@@ -135,19 +149,20 @@ html, body {
 
 /* 轉場層 */
 #transition-layer {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     z-index: 1000;
     display: none;
+    background-color: #000;
 }
 
 #transition-video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* 載入畫面 */
@@ -208,12 +223,6 @@ html, body {
     pointer-events: auto !important;
 }
 
-/* 確保在全螢幕模式下正常顯示 */
-:fullscreen #game-container {
-    width: 100vw;
-    height: 100vh;
-}
-
 /* 控制按鈕組 */
 #control-buttons {
     position: fixed;
@@ -222,6 +231,7 @@ html, body {
     display: flex;
     gap: 10px;
     z-index: 1000;
+    padding: 10px;
 }
 
 .control-button {
@@ -236,6 +246,7 @@ html, body {
     cursor: pointer;
     transition: all 0.3s ease;
     color: white;
+    flex-shrink: 0;
 }
 
 .control-button:hover {
@@ -388,4 +399,37 @@ html, body {
     0% { transform: scale(1); }
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
+}
+
+/* 響應式調整 */
+@media screen and (max-width: 768px) {
+    .character {
+        width: 300px;
+        height: 450px;
+    }
+    
+    #dialogue-layer {
+        width: 95%;
+    }
+    
+    .control-button {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .character {
+        width: 600px;
+        height: 800px;
+    }
+    
+    #dialogue-layer {
+        max-width: 1600px;
+    }
+    
+    .control-button {
+        width: 45px;
+        height: 45px;
+    }
 }
