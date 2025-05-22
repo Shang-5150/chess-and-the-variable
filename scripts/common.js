@@ -349,11 +349,7 @@ class GameCore {
             await video.play();
             
             // 監聽視頻結束
-            video.onended = async () => {
-                // 如果是 15-2.mp4，額外等待 5 秒
-                if (videoPath.includes('15-2.mp4')) {
-                    await this.sleep(5000);
-                }
+            video.onended = () => {
                 
                 transitionLayer.style.display = 'none';
                 video.src = '';
